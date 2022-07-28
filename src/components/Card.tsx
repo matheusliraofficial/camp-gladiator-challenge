@@ -7,33 +7,20 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
+import { getImpactTagColor, getLevelTagColor } from "../utils/colors";
 import { IWorkout } from "../services/useWorkoutsService";
 
-type WorkoutProps = Omit<IWorkout, "id">;
+type CardProps = Omit<IWorkout, "id">;
 
-export const Workout = ({
+export const Card = ({
   thumbnail,
   levelTag,
   title,
   description,
   duration,
   impactTag,
-}: WorkoutProps) => {
-
-  const getLevelTagColor = (tag: WorkoutProps["levelTag"]) => {
-    const colorByTag = {
-      beginner: "blue",
-      intermediate: "yellow",
-      advanced: "red",
-    };
-
-    return colorByTag[tag]
-  }
-  
-  const getImpactTagColor = (tag: WorkoutProps['impactTag']) => tag === 'high' ? 'orange' : 'green';
-
-  return (
-  <Flex p={50} w="full" alignItems="center" justifyContent="center">
+}: CardProps) => (
+  <Flex w="full" alignItems="center" justifyContent="center">
     <Box
       bg={useColorModeValue("white", "gray.800")}
       maxW="sm"
@@ -54,10 +41,20 @@ export const Workout = ({
       />
       <Box p="6">
         <Flex alignItems="baseline" gap="5">
-          <Badge rounded="full" px="2" fontSize="0.8em" colorScheme={getLevelTagColor(levelTag)}>
+          <Badge
+            rounded="full"
+            px="2"
+            fontSize="0.8em"
+            colorScheme={getLevelTagColor(levelTag)}
+          >
             {levelTag}
           </Badge>
-          <Badge rounded="full" px="2" fontSize="0.8em" colorScheme={getImpactTagColor(impactTag)}>
+          <Badge
+            rounded="full"
+            px="2"
+            fontSize="0.8em"
+            colorScheme={getImpactTagColor(impactTag)}
+          >
             {impactTag}
           </Badge>
           <Badge rounded="full" px="2" fontSize="0.8em" colorScheme="gray">
@@ -78,4 +75,3 @@ export const Workout = ({
     </Box>
   </Flex>
 );
-}
