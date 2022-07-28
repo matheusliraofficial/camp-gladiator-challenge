@@ -1,7 +1,7 @@
 import { rest } from 'msw'
 
 export const handlers = [
-  rest.post('/login', (_, res, ctx) => res(
+  rest.get('/workouts', (_, res, ctx) => res(
       ctx.json([
         {
           "description": "Enjoy a fun and low impact workout with Kelsey. We will engage a full body workout and get your heart rate up!",
