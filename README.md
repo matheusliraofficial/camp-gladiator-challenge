@@ -7,7 +7,8 @@ I used a boilerplate with React + TypeScript + Vite to bootstrap the project, I 
 ## How to setup the project
 
 1. Clone repo in your machine
-2. In the project directory, execute: `yarn install`
+2. Before installing the dependencies, make sure you are using at least Node.js v14.18.3
+3. In the project directory, execute: `yarn install`
 
 ## Run project
 
