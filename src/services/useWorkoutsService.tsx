@@ -15,6 +15,7 @@ export interface IWorkout {
 
 export interface IWorkoutsService {
   getWorkouts: () => Promise<IWorkout[]>;
+  getWorkout: (id: string) => Promise<IWorkout>;
 }
 
 const WorkoutsServiceContext = createContext<IWorkoutsService | undefined>(
@@ -23,7 +24,14 @@ const WorkoutsServiceContext = createContext<IWorkoutsService | undefined>(
 
 export const WorkoutsService: FC = ({ children }: any) => {
   const workoutsService = {
-    getWorkouts: () => axios.get<IWorkout[]>("/workouts").then(({ data }) => data),
+    getWorkouts: () =>
+      axios.get<IWorkout[]>("/workouts").then(({ data }) => data),
+    getWorkout: (id: string) =>
+      axios
+        .get<IWorkout[]>("/workouts")
+        .then(
+          ({ data }) => data.filter(({ id: workoutId }) => workoutId === id)[0]
+        ),
   };
 
   return (
