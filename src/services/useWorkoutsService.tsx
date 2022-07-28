@@ -1,4 +1,4 @@
-import { FC, createContext, useContext } from "react";
+import { FC, createContext, useContext, ReactNode } from "react";
 import axios from "axios";
 
 export interface IWorkout {
@@ -22,7 +22,7 @@ const WorkoutsServiceContext = createContext<IWorkoutsService | undefined>(
   undefined
 );
 
-export const WorkoutsService: FC = ({ children }: any) => {
+export const WorkoutsService: FC<{ children: ReactNode }> = ({ children }) => {
   const workoutsService = {
     getWorkouts: () =>
       axios.get<IWorkout[]>("/workouts").then(({ data }) => data),
